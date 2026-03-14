@@ -10675,7 +10675,13 @@ v496:AddButton({
 		setfpscap(60)
 	end
 })
-
+v496:AddButton({
+	Name = "FPS Boost V2",
+	Callback = function()
+	repeat wait(5) until game:IsLoaded()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/TurboLite/Script/main/FixLag.lua"))()
+end
+})
 local v1218 = {
     "NOMOREHACK",
     "BANEXPLOIT",
