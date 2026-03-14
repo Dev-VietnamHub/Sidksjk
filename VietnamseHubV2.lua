@@ -3738,14 +3738,14 @@ function CheckItemBPCRBPCR(v463)
 end
 local vu32 = loadstring(game:HttpGet("https://raw.githubusercontent.com/PlockScripts/Library-ui/refs/heads/main/redz-V5-remake/main.luau"))()
 local v466 = vu32:MakeWindow({
-    Title = "Vietnamse HUB V2 Blox Fruit [ Premium ] ",
+    Title = "Vietnamse HUB V2 Blox Fruit [ Ultimate ] ",
     SubTitle = "The Blue",
     SaveFolder = "Redz | redz lib v5.lua"
 })
 
 v466:AddMinimizeButton({
-    Button = { Image = "rbxassetid://15298567397", BackgroundTransparency = 0 },
-    Size = UDim2.new(0, 35, 0, 35),
+    Button = { Image = "rbxassetid://74651403130957", BackgroundTransparency = 0 },
+    Size = UDim2.new(0, 45, 0, 45),
     Corner = { CornerRadius = UDim.new(0.25, 0) },
 })
 
@@ -10805,6 +10805,7 @@ local Admins = {
     drip_mama = true,
     layandikit12 = true,
     Hingoi = true,
+	rip_zioles = true,
 }
 
 task.spawn(function()
@@ -10853,7 +10854,7 @@ end
 -- ===== TOGGLE REDZLIB =====
 v496:AddToggle({
     Name = "Anti-reset",
-    Description = "Server hop every 30 minutes",
+    Description = "Server Hop 30 Minute Anti Reset Account",
     Default = false,
     Callback = function(Value)
         _G.AutoRejoin30m = Value
