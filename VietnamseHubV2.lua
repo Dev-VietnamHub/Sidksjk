@@ -7145,6 +7145,100 @@ v487:AddToggle({
     end
 })
 end
+local _ = v489:AddSection({"Leviathan"})
+v489:AddToggle({
+    Name = "Auto Find Leviathan",
+    Description = "",
+    Default = false,
+    Callback = function(v948)
+    });
+    v17.AutoFindFrozen:SetValue(false);
+    v515:OnChanged(function(v606)
+        _G.AutoFindFrozen = v606;
+    end);
+    local v511 = {};
+    local v512 = false;
+    local v513 = false;
+    v505.RenderStepped:Connect(function()
+        if not _G.AutoFindFrozen then
+            v513 = false;
+            return;
+        end
+        local v607 = v504.LocalPlayer;
+        local v608 = v607.Character;
+        if (not v608 or not v608:FindFirstChild("Humanoid")) then
+            return;
+        end
+        local function v609()
+            if v512 then
+                return;
+            end
+            v512 = true;
+            for v773, v774 in pairs(v511) do
+                if (v774 and v774.Parent and (v774.Name == "VehicleSeat") and not v774.Occupant) then
+                    Tween2(v774.CFrame);
+                    break;
+                end
+            end
+            v512 = false;
+        end
+        local v610 = v608.Humanoid;
+        local v611 = false;
+        local v612 = nil;
+        for v704, v705 in pairs(v507.Boats:GetChildren()) do
+            local v706 = v705:FindFirstChild("VehicleSeat");
+            if (v706 and (v706.Occupant == v610)) then
+                v611 = true;
+                v612 = v706;
+                v511[v705.Name] = v706;
+            elseif (v706 and (v706.Occupant == nil)) then
+                v609();
+            end
+        end
+        if not v611 then
+            return;
+        end
+        v612.MaxSpeed = v508;
+        v612.CFrame = CFrame.new(Vector3.new(v612.Position.X, v612.Position.Y, v612.Position.Z)) * v612.CFrame.Rotation ;
+        v506:SendKeyEvent(true, "W", false, game);
+        for v707, v708 in pairs(v507.Boats:GetDescendants()) do
+            if v708:IsA("BasePart") then
+                v708.CanCollide = false;
+            end
+        end
+        for v709, v710 in pairs(v608:GetDescendants()) do
+            if v710:IsA("BasePart") then
+                v710.CanCollide = false;
+        local v615 = {
+            "ShipwreckIsland",
+            "SandIsland",
+            "TreeIsland",
+            "TinyIsland",
+            "MysticIsland",
+            "KitsuneIsland",
+            "PrehistoricIsland"
+        };
+        for v711, v712 in ipairs(v615) do
+            local v713 = v507.Map:FindFirstChild(v712);
+            if (v713 and v713:IsA("Model")) then
+                v713:Destroy();
+            end
+        end
+        local v616 = v507.Map:FindFirstChild("FrozenDimension");
+        if v616 then
+            v506:SendKeyEvent(false, "W", false, game);
+            _G.AutoFindFrozen = false;
+            if not v513 then
+                v14:Notify({
+                    Title = "Banana Cat Hub",
+                    Content = "Đảo Leviathan Tìm Thấy",
+                    Duration = 10
+                });
+                v513 = true;
+            end
+            return;
+        end
+    end);
 local _ = v489:AddSection({"Sea Events"})
 v489:AddToggle({
     Name = "Auto Drive Boats",
